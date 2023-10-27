@@ -2,13 +2,13 @@
 
 tag=waco_mt_10h
 
-MODEL_DIR=/mnt/data7/siqiouyang/runs/WACO/$tag
+MODEL_DIR=/mnt/data/xixu/runs/WACO/$tag
 
 mkdir -p ${MODEL_DIR}
 
 export num_gpus=1
 
-python train.py /mnt/data/siqiouyang/datasets/must-c-v1.0 \
+python train.py /mnt/data/xixu/datasets/must-c-v1.0 \
     --distributed-world-size $num_gpus \
     --task speech_to_text_triplet_align_with_extra_mt_nllb \
     --train-subset train_asr_mt_iwslt,train_asr_mt_cv --valid-subset dev_asr_mt_iwslt,dev_asr_mt_cv \
@@ -18,8 +18,8 @@ python train.py /mnt/data/siqiouyang/datasets/must-c-v1.0 \
     --max-audio-tokens 1000000 --max-text-tokens 2000 --max-tokens 1000000  --max-tokens-valid 2000000 \
     --skip-invalid-size-inputs-valid-test \
     \
-    --arch xstnet_nllb_base --w2v2-model-path /mnt/data/siqiouyang/runs/mST/pretrained/xlsr2_300m.pt \
-    --nllb-dir /mnt/data/siqiouyang/runs/ConST/pretrained/nllb \
+    --arch xstnet_nllb_base --w2v2-model-path /mnt/data/xixu/runs/mST/pretrained/xlsr2_300m.pt \
+    --nllb-dir /mnt/data/xixu/runs/ConST/pretrained/nllb \
     \
     --optimizer adam --clip-norm 10.0 \
     --lr-scheduler inverse_sqrt --lr 1e-4  --warmup-updates 25000  --weight-decay 0.0 \
