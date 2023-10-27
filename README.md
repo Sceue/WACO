@@ -24,7 +24,7 @@ pip install -e ./
 
 #### MuST-C English-German Data Preparation
 
-First, download the raw data from https://ict.fbk.eu/must-c/, unzip the file and save files to path ```${DATA_PATH}```.
+First, download the raw data from https://mt.fbk.eu/must-c/, unzip the file and save files to path ```${DATA_PATH}```.
 ```bash
 tar -zxf ${DATA_PATH}/MUSTC_v1.0_en-de.tar.gz -C ${DATA_PATH}
 ```
