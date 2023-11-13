@@ -8,7 +8,7 @@ mkdir -p ${MODEL_DIR}
 # cp /mnt/data7/siqiouyang/runs/WACO/waco_mt_10h/checkpoint_best.pt /mnt/data7/siqiouyang/runs/WACO/$tag/checkpoint_last.pt
 cp /mnt/data/xixu/runs/ConST/mt_en_token_mfat_t0.20/checkpoint_best.pt /mnt/data/xixu/runs/WACO/$tag/checkpoint_last.pt
 
-export num_gpus=2
+export num_gpus=1
 
 python /home/xixu/WACO/fairseq_cli/train.py /mnt/data/xixu/datasets/must-c-v1.0 \
     --distributed-world-size $num_gpus \
@@ -37,8 +37,7 @@ python /home/xixu/WACO/fairseq_cli/train.py /mnt/data/xixu/datasets/must-c-v1.0 
     --keep-last-epochs 1 --keep-interval-updates 1 --keep-best-checkpoints 1 \
     --save-dir ${MODEL_DIR} \
     --ddp-backend=no_c10d --fp16 \
-    --reset-optimizer --reset-dataloader  --all-gather-list-size 32768 \
-    \
+    # --reset-optimizer --reset-dataloader  --all-gather-list-size 32768 
     --eval-bleu --eval-bleu-args '{"beam": 4, "prefix_size": 1}' \
     --eval-bleu-detok moses --eval-bleu-remove-bpe --eval-bleu-print-samples \
     --eval-bleu-bpe sentencepiece --eval-bleu-bpe-path /mnt/data/xixu/datasets/must-c-v1.0/flores200sacrebleuspm.model \
